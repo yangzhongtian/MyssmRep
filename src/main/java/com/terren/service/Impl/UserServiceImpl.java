@@ -15,7 +15,9 @@ import java.util.List;
 public class UserServiceImpl implements IUserService {
     @Resource
     private IUserDao userDao;
-    public List<User> getAllUser() {   // idea 中实现接口方法快捷键  ctrl+I
-        return null;
+    public List<User> getAllUser(){
+        List<User> users = userDao.getAllUser();
+
+        return users;
     }
 }
