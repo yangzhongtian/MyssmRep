@@ -24,8 +24,9 @@
 </head>
 <body>
 <div id="mydiv">
-    Hello my Controller jsp
+    Detail User  jsp 2 </br>
     ${nowDate}
+    ${message}
 </div>
 <c:forEach var="i" items="${users}">
 <p>

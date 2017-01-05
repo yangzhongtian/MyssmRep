@@ -8,11 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,9 +32,11 @@ public class UserActionImpl implements IUserAction{
     public ModelAndView getAllUser(HttpServletRequest request, HttpServletResponse response) {
       List<User> lists=  userService.getAllUser();
         String ss = lists.get(0).getUserName();
-       String name = request.getParameter("name");
-        return new ModelAndView("DetailUser","users",lists);
-
+        ModelAndView  modelAndView = new ModelAndView("DetailUser");
+        modelAndView.addObject("users",lists);
+       String nowDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        modelAndView.addObject("nowDate",nowDate);
+        return  modelAndView;
     }
 
     @RequestMapping(value="/getAllUserTow",method = {RequestMethod.GET,RequestMethod.POST})
@@ -39,7 +44,15 @@ public class UserActionImpl implements IUserAction{
         List<User> lists=  userService.getAllUser();
         String ss = lists.get(0).getUserName();
         System.out.println(model);
-        return new ModelAndView("DetailUser","users",lists);
+        return new ModelAndView("DetailUser2","users",lists);
+    }
+
+    @RequestMapping(value="/getAllUserRedirect",method = {RequestMethod.GET,RequestMethod.POST})
+    public String getAllUsetRedrect(User user, RedirectAttributes redirectAttributes){
+        List<User> lists=  userService.getAllUser();
+        String ss = lists.get(0).getUserName();
+        redirectAttributes.addFlashAttribute("message","hello");
+        return "redirect:/userActions/getAllUserTow";
     }
     public static void main(String[] args) {
         System.out.println("hello");
