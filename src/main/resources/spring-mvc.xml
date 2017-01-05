@@ -20,6 +20,7 @@
             </list>
         </property>
     </bean>-->
+    <bean name="/HelloMyController" class="com.terren.controller.HelloMyController"></bean>
     <mvc:annotation-driven/>
     <!-- 启动SpringMVC的注解功能，完成请求和注解POJO的映射
     -->
