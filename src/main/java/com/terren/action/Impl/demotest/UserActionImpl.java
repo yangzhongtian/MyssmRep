@@ -1,4 +1,4 @@
-package com.terren.action.Impl;
+package com.terren.action.Impl.demotest;
 
 import com.terren.action.IUserAction;
 import com.terren.entity.User;
