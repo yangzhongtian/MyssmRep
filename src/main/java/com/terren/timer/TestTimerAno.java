@@ -18,8 +18,11 @@ public class TestTimerAno {
     /**
      *  秒 分 时  天 月 天(星期) 年(可选) ---最少6个 最多七个
      *  0/15"表示从第0分钟开始，每15分钟.
+     *  0/5 * * * * *  //每五秒钟执行一次
+     *  0 0/1 * * * *   // 每分钟执行一次
+     *
      */
-    @Scheduled(cron = "0/5 * * * * ?")
+    @Scheduled(cron = "0 0 0/1 * * *")
     public void perMinPrint(){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         String time =simpleDateFormat.format(new Date());
